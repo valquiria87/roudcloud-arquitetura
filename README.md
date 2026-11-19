@@ -53,7 +53,7 @@ O diagrama reúne duas perspectivas complementares:
 
 </div>
 
-**Arquivo-fonte editável:** [Abrir o diagrama no Draw.io](diagrams/rotacloud-arquitetura.drawio).
+**Arquivo-fonte editável:** [Abrir o diagrama no Draw.io](diagrams/rotacloud-arquitetura-detalhada.drawio).
 
 ## Arquitetura proposta
 
