@@ -1,0 +1,235 @@
+<mxfile host="Electron">
+  <diagram id="rotacloud2" name="RotaCloud detalhado">
+    <mxGraphModel dx="1653" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2150" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c1" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontColor=#232F3E;" value="&lt;b&gt;&lt;font style=&#39;font-size:24px&#39;&gt;RotaCloud: arquitetura multi-posto na AWS&lt;/font&gt;&lt;/b&gt;&lt;br&gt;Da chegada do cliente ao fechamento do turno: posto de combustível com restaurante, conveniência e equipe em 3 turnos, rodando em EC2, EBS, S3 e Lambda." vertex="1">
+          <mxGeometry height="60" width="1500" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;arcSize=2;dashed=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;fillColor=#FAFAFA;strokeColor=#999999;fontSize=13;fontColor=#555555;" value="&lt;b&gt;POSTO FÍSICO&lt;/b&gt; · jornada do cliente e rotina da equipe" vertex="1">
+          <mxGeometry height="600" width="1040" x="40" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="&lt;b&gt;1 · CHEGADA&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Câmera da entrada identifica o tipo de veículo e direciona para a pista certa&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="60" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Carro" vertex="1">
+          <mxGeometry height="60" width="80" x="75" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Moto" vertex="1">
+          <mxGeometry height="60" width="80" x="165" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Caminhão" vertex="1">
+          <mxGeometry height="60" width="80" x="255" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Ônibus" vertex="1">
+          <mxGeometry height="60" width="80" x="345" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Câmera da entrada" vertex="1">
+          <mxGeometry height="60" width="80" x="435" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="&lt;b&gt;2 · ABASTECIMENTO&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Pista leve (carro e moto) e pista pesada (caminhão e ônibus, diesel)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="580" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Gasolina comum" vertex="1">
+          <mxGeometry height="60" width="80" x="595" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#F4B6B2;strokeColor=#B85450;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Gasolina aditivada" vertex="1">
+          <mxGeometry height="60" width="80" x="685" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Etanol" vertex="1">
+          <mxGeometry height="60" width="80" x="775" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#CCCCCC;strokeColor=#666666;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Diesel S10" vertex="1">
+          <mxGeometry height="60" width="80" x="865" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Sensor de tanque" vertex="1">
+          <mxGeometry height="60" width="80" x="955" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="&lt;b&gt;3 · CAIXA E PAGAMENTO&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Paga o abastecimento e recebe a nota fiscal (NFC-e)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="PDV (caixa)" vertex="1">
+          <mxGeometry height="60" width="80" x="75" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="PIX" vertex="1">
+          <mxGeometry height="60" width="80" x="165" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Cartão" vertex="1">
+          <mxGeometry height="60" width="80" x="255" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Cartão frota" vertex="1">
+          <mxGeometry height="60" width="80" x="345" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Nota fiscal NFC-e" vertex="1">
+          <mxGeometry height="60" width="80" x="435" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="&lt;b&gt;4 · RESTAURANTE&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Buffet por quilo, à la carte e cozinha com controle de estoque&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="580" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Buffet por quilo" vertex="1">
+          <mxGeometry height="60" width="80" x="595" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Balança" vertex="1">
+          <mxGeometry height="60" width="80" x="685" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="À la carte" vertex="1">
+          <mxGeometry height="60" width="80" x="775" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Cozinha e estoque" vertex="1">
+          <mxGeometry height="60" width="80" x="865" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Comanda" vertex="1">
+          <mxGeometry height="60" width="80" x="955" y="388" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#DAE8FC;strokeColor=#6C8EBF;" value="&lt;b&gt;5 · CONVENIÊNCIA E SERVIÇOS&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Loja e serviços para o viajante, depois a saída&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="580" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Loja" vertex="1">
+          <mxGeometry height="60" width="80" x="595" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Troca de óleo" vertex="1">
+          <mxGeometry height="60" width="80" x="685" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Calibragem" vertex="1">
+          <mxGeometry height="60" width="80" x="775" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Banho do caminhoneiro" vertex="1">
+          <mxGeometry height="60" width="80" x="865" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c32" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Saída" vertex="1">
+          <mxGeometry height="60" width="80" x="955" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#E1D5E7;strokeColor=#9673A6;" value="&lt;b&gt;BASTIDORES · EQUIPE E TURNOS&lt;/b&gt;&lt;br&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Posto 24h em 3 turnos: frentistas, caixas, cozinha e gerência&lt;/font&gt;" vertex="1">
+          <mxGeometry height="150" width="470" x="60" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Turno 1 06h–14h" vertex="1">
+          <mxGeometry height="60" width="80" x="75" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Turno 2 14h–22h" vertex="1">
+          <mxGeometry height="60" width="80" x="165" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c36" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Turno 3 22h–06h" vertex="1">
+          <mxGeometry height="60" width="80" x="255" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Ponto eletrônico" vertex="1">
+          <mxGeometry height="60" width="80" x="345" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c38" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=14;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#232F3E;verticalAlign=middle;" value="Fechamento de caixa" vertex="1">
+          <mxGeometry height="60" width="80" x="435" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="c39" edge="1" parent="1" source="c3" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;" target="c9" value="entra na pista">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c40" edge="1" parent="1" source="c9" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" target="c15" value="paga">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c41" edge="1" parent="1" source="c15" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;" target="c21" value="vai comer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c42" edge="1" parent="1" source="c21" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#6C8EBF;fontSize=10;fontColor=#232F3E;" target="c27" value="compra ou usa serviços">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c43" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#F5F5F5;strokeColor=#666666;" value="&lt;b&gt;Como o cliente passa pelo posto:&lt;/b&gt; 1 chega (carro, moto, caminhão ou ônibus) → 2 abastece (gasolina comum, aditivada, etanol ou diesel S10; caminhão e ônibus usam a pista pesada) → 3 paga no caixa (PIX, cartão ou cartão frota) e recebe a NFC-e → 4 se quiser, come no restaurante (buffet por quilo com balança, à la carte) → 5 usa a loja e os serviços (troca de óleo, calibragem, banho do caminhoneiro) e sai.&lt;br&gt;&lt;br&gt;&lt;b&gt;Turnos:&lt;/b&gt; o posto funciona 24h em 3 turnos (06h–14h, 14h–22h, 22h–06h). Cada funcionário bate o ponto ao entrar e ao sair. No fim do turno, o fechamento de caixa vira um relatório no S3 e o Lambda confere e avisa o gerente.&lt;br&gt;&lt;br&gt;&lt;b&gt;Replicação:&lt;/b&gt; cada posto novo copia a VPC com EC2 + EBS e usa uma pasta própria nos buckets do S3 (posto-001/, posto-002/...). A central não muda." vertex="1">
+          <mxGeometry height="215" width="1040" x="40" y="705" as="geometry" />
+        </mxCell>
+        <mxCell id="c44" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;verticalAlign=top;align=left;spacingLeft=30;fillColor=none;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fontColor=#232F3E;dashed=0;" value="Nuvem AWS" vertex="1">
+          <mxGeometry height="830" width="990" x="1110" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c45" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;verticalAlign=top;align=left;spacingLeft=30;fillColor=none;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fontColor=#147EBA;dashed=1;" value="Região: sa-east-1 (São Paulo)" vertex="1">
+          <mxGeometry height="775" width="950" x="1130" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="c46" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;verticalAlign=top;align=left;spacingLeft=30;fillColor=none;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fontColor=#8C4FFF;dashed=0;" value="VPC do posto (10.0.0.0/16)" vertex="1">
+          <mxGeometry height="440" width="440" x="1150" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="c47" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;verticalAlign=top;align=left;spacingLeft=30;fillColor=none;grIcon=mxgraph.aws4.group_security_group;strokeColor=#7AA116;fontColor=#248814;dashed=0;" value="Sub-rede pública (10.0.1.0/24)" vertex="1">
+          <mxGeometry height="370" width="400" x="1170" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="c48" parent="1" style="rounded=1;arcSize=3;dashed=1;strokeColor=#DD3522;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=top;align=left;spacingLeft=10;fontSize=11;fontColor=#DD3522;" value="Security Group: só HTTPS (443) e SSH restrito" vertex="1">
+          <mxGeometry height="315" width="370" x="1185" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="c49" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" value="&lt;b&gt;EC2 · Operação&lt;/b&gt;&lt;br&gt;PDV, bombas, restaurante&lt;br&gt;e conveniência" vertex="1">
+          <mxGeometry height="64" width="64" x="1215" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="c50" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" value="&lt;b&gt;EC2 · Equipe&lt;/b&gt;&lt;br&gt;ponto, turnos&lt;br&gt;e relatórios" vertex="1">
+          <mxGeometry height="64" width="64" x="1435" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="c51" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" value="&lt;b&gt;EBS&lt;/b&gt;&lt;br&gt;vendas, estoque&lt;br&gt;e tanque" vertex="1">
+          <mxGeometry height="64" width="64" x="1215" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c52" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elastic_block_store;" value="&lt;b&gt;EBS&lt;/b&gt;&lt;br&gt;escalas, ponto&lt;br&gt;e turnos" vertex="1">
+          <mxGeometry height="64" width="64" x="1435" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c53" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=30;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=13;fontColor=#232F3E;verticalAlign=bottom;dashed=1;fontStyle=1;" value="POSTO 02 … N&lt;br&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;mesma estrutura: VPC + EC2 + EBS&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="440" x="1150" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="c54" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=30;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontColor=#232F3E;verticalAlign=bottom;" value="&lt;b&gt;ARMAZENAMENTO · S3&lt;/b&gt; (uma pasta por posto)" vertex="1">
+          <mxGeometry height="190" width="440" x="1620" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="c55" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="&lt;b&gt;S3&lt;/b&gt; notas-fiscais" vertex="1">
+          <mxGeometry height="64" width="64" x="1640" y="222" as="geometry" />
+        </mxCell>
+        <mxCell id="c56" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="&lt;b&gt;S3&lt;/b&gt; relatorios" vertex="1">
+          <mxGeometry height="64" width="64" x="1790" y="222" as="geometry" />
+        </mxCell>
+        <mxCell id="c57" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=top;verticalAlign=bottom;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" value="&lt;b&gt;S3&lt;/b&gt; backups" vertex="1">
+          <mxGeometry height="64" width="64" x="1940" y="222" as="geometry" />
+        </mxCell>
+        <mxCell id="c58" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=30;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=12;fontColor=#232F3E;verticalAlign=bottom;" value="&lt;b&gt;AUTOMAÇÃO · LAMBDA&lt;/b&gt;" vertex="1">
+          <mxGeometry height="170" width="440" x="1620" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="c59" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Organiza&lt;br&gt;notas fiscais" vertex="1">
+          <mxGeometry height="64" width="64" x="1640" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c60" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Fecha&lt;br&gt;turno" vertex="1">
+          <mxGeometry height="64" width="64" x="1740" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c61" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Alerta de&lt;br&gt;estoque baixo" vertex="1">
+          <mxGeometry height="64" width="64" x="1840" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c62" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Agendamento/&lt;div&gt;coordenação de snapshots&lt;/div&gt;&lt;div&gt;&amp;nbsp;EBS&lt;/div&gt;" vertex="1">
+          <mxGeometry height="64" width="64" x="1940" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="c63" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=12;" value="&lt;b&gt;Gerente da rede&lt;/b&gt;&lt;br&gt;recebe alertas e relatórios" vertex="1">
+          <mxGeometry height="60" width="240" x="1700" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="c64" parent="1" style="rounded=1;arcSize=5;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=4;fontSize=12;fontColor=#232F3E;fillColor=#FFF2CC;strokeColor=#D6B656;" value="&lt;b&gt;Segurança:&lt;/b&gt; o EC2 usa um perfil IAM (role) para gravar no S3, sem guardar senha no servidor. O Security Group libera só o necessário.&lt;br&gt;&lt;b&gt;Discos:&lt;/b&gt; o EBS mantém os dados do posto; o snapshot noturno é copiado para o S3." vertex="1">
+          <mxGeometry height="100" width="900" x="1150" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="c65" edge="1" parent="1" source="c2" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=4;strokeColor=#232F3E;fontSize=10;fontColor=#232F3E;exitX=1;exitY=0.3;exitDx=0;exitDy=0;" target="c49" value="HTTPS: vendas, bombas, balança e tanque">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c66" edge="1" parent="1" source="c2" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=4;strokeColor=#232F3E;fontSize=10;fontColor=#232F3E;exitX=1;exitY=0.6;exitDx=0;exitDy=0;" target="c50" value="HTTPS: ponto e turnos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c67" edge="1" parent="1" source="c49" style="edgeStyle=none;html=1;startArrow=block;endArrow=block;strokeWidth=2;strokeColor=#7AA116;" target="c51" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c68" edge="1" parent="1" source="c50" style="edgeStyle=none;html=1;startArrow=block;endArrow=block;strokeWidth=2;strokeColor=#7AA116;" target="c52" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c69" edge="1" parent="1" source="c49" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c55" value="NFC-e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c70" edge="1" parent="1" source="c50" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c56" value="relatório de turno">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c71" edge="1" parent="1" source="c55" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c59" value="upload dispara">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c72" edge="1" parent="1" source="c56" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c60" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c73" edge="1" parent="1" source="c56" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c61" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c74" edge="1" parent="1" source="c62" style="edgeStyle=none;html=1;endArrow=block;strokeWidth=3;strokeColor=#ED7100;flowAnimation=1;fontSize=10;fontColor=#232F3E;" target="c57" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c75" edge="1" parent="1" source="c58" style="edgeStyle=none;html=1;endArrow=block;dashed=1;strokeWidth=2;strokeColor=#9673A6;fontSize=10;" target="c63" value="alertas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
