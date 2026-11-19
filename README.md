@@ -6,8 +6,8 @@
 **Da chegada do cliente ao fechamento do turno: uma visão integrada da operação física e dos recursos em nuvem.**
 
 ![Status](https://img.shields.io/badge/status-estudo%20conceitual-blue)
-![AWS](https://img.shields.io/badge/AWS-Cloud%20Foundations-orange)
-![Foco](https://img.shields.io/badge/foco-Amazon%20EC2%20%7C%20EBS%20%7C%20S3%20%7C%20Lambda-232F3E)
+![Formação](https://img.shields.io/badge/DIO-AWS%20Cloud%20Foundations-orange)
+![Serviços](https://img.shields.io/badge/AWS-EC2%20%7C%20EBS%20%7C%20S3%20%7C%20Lambda-232F3E)
 
 </div>
 
@@ -15,13 +15,13 @@
 
 ## Visão geral
 
-O **RotaCloud** é um exercício de arquitetura conceitual desenvolvido no contexto da formação **AWS Cloud Foundations**, com foco inicial no gerenciamento de instâncias Amazon EC2 e nos fundamentos de armazenamento em nuvem.
+O **RotaCloud** é um exercício de arquitetura conceitual desenvolvido durante a formação **AWS Cloud Foundations**, com foco nos fundamentos do Amazon EC2, armazenamento em nuvem e gerenciamento de recursos.
 
-O projeto utiliza como cenário uma rede de postos de combustíveis com operação 24 horas, atendimento a veículos leves e pesados, restaurante, conveniência e equipes organizadas em três turnos.
+O cenário escolhido é uma rede de postos de combustíveis com operação 24 horas, atendimento a veículos leves e pesados, restaurante, conveniência e equipes organizadas em três turnos.
 
-A proposta é representar como uma operação física pode utilizar recursos da AWS para apoiar aplicações, armazenar documentos e relatórios e automatizar rotinas administrativas.
+A proposta é relacionar esse contexto de negócio aos serviços estudados, representando como instâncias EC2 podem executar aplicações, como volumes EBS podem fornecer armazenamento em blocos, como o S3 pode armazenar documentos e relatórios e como o Lambda pode apoiar rotinas automatizadas.
 
-> **Escopo:** este repositório documenta uma proposta de arquitetura para fins educacionais. Não representa uma infraestrutura implantada, não contém integração real com bombas ou meios de pagamento e não comprova execução de serviços ou testes na AWS.
+> **Natureza do projeto:** estudo educacional e arquitetura conceitual. Nenhum recurso foi implantado em uma conta AWS. As integrações com bombas, sensores, sistemas de pagamento e aplicações do posto são ilustrativas; não foram desenvolvidas nem testadas.
 
 ## O cenário de negócio
 
@@ -31,77 +31,89 @@ O complexo rodoviário considerado no estudo reúne diferentes jornadas e rotina
 |---|---|
 | Chegada e direcionamento | Identificação do tipo de veículo e encaminhamento para a pista adequada |
 | Abastecimento | Atendimento a carros, motos, caminhões e ônibus, com diferentes combustíveis |
-| Caixa e pagamento | Registro do abastecimento, pagamento por diferentes meios e emissão de NFC-e |
+| Caixa e pagamento | Registro do abastecimento, meios de pagamento e emissão de NFC-e |
 | Restaurante | Buffet por quilo, balança, serviço à la carte, cozinha, estoque e comanda |
 | Conveniência e serviços | Loja, troca de óleo, calibragem e banho para caminhoneiros |
-| Equipe e turnos | Rotina 24 horas, registro de ponto e fechamento de caixa |
+| Equipe e turnos | Operação 24 horas, registro de ponto e fechamento de caixa |
 
-O cenário foi escolhido para dar contexto aos recursos de computação, armazenamento e automação estudados. Os setores físicos representam o domínio do negócio; não são, por si só, componentes ou serviços da AWS.
+O cenário foi escolhido para dar contexto às decisões de arquitetura. Os setores físicos representam o domínio do negócio; não são, por si só, componentes ou serviços da AWS.
 
 ## Diagrama da arquitetura
 
-O desenho apresenta duas perspectivas complementares:
+O diagrama reúne duas perspectivas complementares:
 
 1. **Operação física:** jornada do cliente e rotina da equipe no posto.
-2. **Infraestrutura em nuvem:** recursos AWS propostos para apoiar as aplicações e as rotinas administrativas.
+2. **Infraestrutura em nuvem:** recursos AWS propostos para apoiar aplicações, armazenamento e rotinas administrativas.
+
+<div align="center">
 
 ![Diagrama da arquitetura RotaCloud](images/rotacloud-arquitetura.png)
 
-*O arquivo-fonte editável do diagrama poderá ser disponibilizado junto à imagem exportada.*
+*Figura 1 — Visão conceitual da operação do posto e dos recursos AWS.*
 
-## Como a arquitetura está organizada
+</div>
+
+**Arquivo-fonte editável:** [Abrir o diagrama no Draw.io](diagrams/rotacloud-arquitetura.drawio).
+
+## Arquitetura proposta
 
 ### 1. Amazon EC2 — capacidade computacional
 
-O Amazon Elastic Compute Cloud (Amazon EC2) fornece instâncias de máquinas virtuais para executar aplicações.
+O **Amazon Elastic Compute Cloud (Amazon EC2)** fornece capacidade computacional por meio de instâncias, que funcionam como máquinas virtuais na AWS.
 
 Na proposta, foram representadas duas instâncias com responsabilidades distintas:
 
 - **EC2 — Operação:** aplicações relacionadas ao atendimento, vendas, abastecimento e conveniência.
 - **EC2 — Equipe:** aplicações de apoio aos funcionários, registro de ponto, turnos e relatórios.
 
-A separação é uma decisão de modelagem do cenário, utilizada para ilustrar a execução de diferentes cargas de trabalho em instâncias EC2. Não significa que essa seja a única arquitetura possível ou que a divisão já tenha sido validada por dimensionamento.
+A separação é uma decisão de modelagem utilizada para ilustrar diferentes cargas de trabalho. Não significa que essa seja a única arquitetura possível ou que a divisão tenha sido validada por dimensionamento.
 
-A escolha de uma instância deve considerar as características da aplicação, como processamento, memória, armazenamento, rede e sistema operacional. A imagem de máquina (AMI) fornece a base para iniciar a instância.
+A escolha de uma instância deve considerar as necessidades da aplicação, como CPU, memória, armazenamento, rede e sistema operacional. A **Amazon Machine Image (AMI)** fornece a imagem de referência utilizada para iniciar uma instância.
+
+Como o EC2 é um serviço de infraestrutura como serviço (IaaS), o projeto também considera a responsabilidade sobre os aplicativos, dados e conexões configurados no ambiente.
 
 ### 2. Amazon EBS — armazenamento em blocos associado à EC2
 
-O Amazon Elastic Block Store (Amazon EBS) fornece volumes de armazenamento em blocos que podem ser anexados às instâncias EC2.
+O **Amazon Elastic Block Store (Amazon EBS)** fornece volumes de armazenamento em blocos que podem ser anexados às instâncias EC2.
 
-No RotaCloud, os volumes EBS representam o armazenamento associado às aplicações de operação e de equipe, incluindo dados de trabalho, arquivos e registros que precisam estar disponíveis para as instâncias.
+No RotaCloud, os volumes EBS representam o armazenamento associado às aplicações de operação e de equipe, para dados e arquivos utilizados pelas instâncias.
 
-A analogia utilizada no conteúdo da formação é a de um disco adicional conectado a uma máquina virtual: o volume pode ser dimensionado e utilizado pela instância como armazenamento persistente.
+Uma forma de compreender esse recurso é imaginá-lo como um disco conectado a uma máquina virtual. O volume pode ser utilizado pelo sistema operacional e pelas aplicações como armazenamento em blocos.
 
-**Ponto importante:** EBS não é apresentado aqui como um banco de dados ou como um serviço de armazenamento de objetos. Ele fornece volumes em blocos para uso pela EC2. A arquitetura lógica do banco de dados da aplicação não faz parte do escopo deste primeiro desenho.
+**Distinção importante:** EBS não é apresentado como banco de dados nem como armazenamento de objetos. Ele fornece volumes em blocos para uso pela EC2. A modelagem de um banco de dados transacional não faz parte do escopo deste primeiro exercício.
+
+Também é importante distinguir a instância do volume: interromper uma instância EC2 não significa excluir automaticamente o volume EBS associado. Um volume que permanece provisionado pode continuar gerando custos.
 
 ### 3. Amazon S3 — armazenamento de objetos
 
-O Amazon Simple Storage Service (Amazon S3) é utilizado na proposta para armazenar objetos, como documentos e arquivos gerados pelas rotinas do posto.
+O **Amazon Simple Storage Service (Amazon S3)** é o serviço de armazenamento de objetos utilizado na proposta para guardar arquivos gerados pelas rotinas do posto.
 
 O desenho separa os usos por finalidade:
 
 - **Notas fiscais:** arquivos relacionados à documentação fiscal.
 - **Relatórios:** relatórios operacionais e de fechamento de turno.
-- **Backups:** cópias de arquivos previstas na estratégia conceitual de proteção de dados.
+- **Backups:** área representada para armazenar cópias de arquivos previstas na estratégia conceitual.
 
-A separação por finalidade facilita a compreensão e a organização dos dados. Em uma implementação real, nomes de buckets, prefixos, políticas de acesso, retenção e requisitos legais precisariam ser definidos.
+A separação por finalidade facilita a organização e a compreensão do cenário. Em uma implementação real, seria necessário definir buckets, prefixos, permissões, retenção, criptografia e requisitos legais.
 
-O S3 também oferece classes de armazenamento e regras de ciclo de vida (*Lifecycle*), que podem movimentar objetos entre classes conforme critérios de acesso e retenção. O uso dessas opções depende da frequência de consulta e dos requisitos de recuperação.
+O S3 oferece diferentes classes de armazenamento e regras de ciclo de vida (*Lifecycle*). Essas regras podem automatizar a transição de objetos entre classes, de acordo com critérios de acesso e retenção, contribuindo para a otimização de custos.
 
 ### 4. AWS Lambda — automação de rotinas
 
-O AWS Lambda aparece no desenho como proposta de automação de tarefas pontuais:
+O **AWS Lambda** permite executar código em resposta a eventos ou invocações, sem que seja necessário administrar diretamente servidores para a execução da função.
+
+No diagrama, o Lambda aparece associado a possibilidades de automação:
 
 - Organização de documentos fiscais.
 - Apoio ao fechamento de turno.
-- Alerta de estoque baixo.
-- Orquestração de uma rotina relacionada à cópia de snapshots.
+- Geração de alerta de estoque baixo.
+- Coordenação de uma rotina relacionada a snapshots.
 
-Esses itens representam **casos de uso propostos**, e não funções implementadas ou testadas.
+Esses itens são **casos de uso propostos**, não funções implementadas ou testadas. Para cada automação, ainda seria necessário definir a origem dos dados, o evento de acionamento, as permissões e a integração com os demais recursos.
 
-Uma função Lambda executa código em resposta a eventos ou invocações. Para que cada rotina funcione, ainda seria necessário definir sua origem de dados, evento de acionamento, permissões e integração com os demais recursos.
+**Sobre snapshots:** a representação da rotina noturna deve ser entendida como uma ideia de automação ou coordenação do processo. Snapshots de volumes EBS são recursos gerenciados pela AWS; não devem ser interpretados como arquivos que uma função Lambda simplesmente copia para um bucket S3 comum.
 
-O desenho é introdutório: não pretende detalhar código, configuração de gatilhos ou todos os mecanismos de integração do serviço.
+O detalhamento de gatilhos, código e mecanismos de integração fica fora do escopo introdutório deste projeto.
 
 ## Fluxo operacional ilustrativo
 
@@ -109,61 +121,89 @@ O fluxo abaixo conecta a jornada do negócio às responsabilidades atribuídas a
 
 1. O cliente chega e é direcionado conforme o tipo de veículo.
 2. O abastecimento é realizado na pista adequada.
-3. A operação é registrada no caixa e o pagamento é processado pelos meios previstos no cenário.
+3. A operação é registrada no caixa; o cenário prevê diferentes meios de pagamento e emissão de NFC-e.
 4. O cliente pode utilizar o restaurante, a conveniência ou outros serviços.
-5. Os funcionários registram seus turnos e as rotinas de fechamento são realizadas.
-6. As aplicações executadas nas instâncias EC2 apoiam as atividades operacionais representadas.
+5. Os funcionários registram seus turnos e realizam as rotinas de fechamento.
+6. As aplicações representadas nas instâncias EC2 apoiam as atividades operacionais.
 7. Os volumes EBS fornecem armazenamento em blocos às instâncias.
 8. Documentos e relatórios são organizados conceitualmente no Amazon S3.
 9. As rotinas atribuídas ao Lambda representam possibilidades de automação e geração de alertas.
 
-O fluxo é uma descrição funcional do cenário. Ele não especifica protocolos de integração com bombas, terminais de pagamento ou equipamentos físicos.
+Esse fluxo descreve o funcionamento pretendido do cenário. Não especifica protocolos nem comprova integração com bombas, terminais de pagamento ou equipamentos físicos.
 
 ## Gerenciamento e otimização de recursos
 
-O conteúdo da formação também aborda práticas de otimização que se relacionam com o cenário:
+O conteúdo da formação aborda otimização principalmente como uma forma de utilizar os recursos de maneira eficiente e evitar custos desnecessários. No cenário RotaCloud, os conceitos podem ser relacionados da seguinte forma:
 
-- **Remover recursos ociosos:** instâncias e recursos sem utilização devem ser identificados para evitar custos desnecessários.
-- **Escalabilidade vertical:** aumentar ou reduzir capacidade de uma instância, considerando CPU, memória, armazenamento e rede.
+- **Desligamento de instâncias não utilizadas:** em ambientes de desenvolvimento, testes ou treinamento, instâncias sem uso fora do horário de trabalho podem ser interrompidas, quando isso for compatível com a finalidade do ambiente.
+- **Remoção de recursos ociosos:** recursos que não são mais necessários devem ser identificados para evitar gastos desnecessários.
+- **Escalabilidade vertical:** aumentar ou reduzir a capacidade de um recurso, como CPU, memória, armazenamento ou rede de uma instância.
 - **Escalabilidade horizontal:** aumentar a quantidade de recursos ou instâncias para atender à demanda.
-- **Sob demanda (On-Demand):** opção adequada a cargas variáveis e usos de curto prazo que não podem ser interrompidos.
-- **Instâncias reservadas:** modalidade de compromisso de uso que pode reduzir custos em cenários compatíveis com o período contratado.
-- **Spot:** capacidade com desconto, sujeita a interrupções; por isso, deve ser avaliada apenas para cargas que tolerem esse comportamento.
+- **Sob demanda (On-Demand):** opção que pode ser adequada a cargas variáveis e usos de curto prazo que não podem ser interrompidos.
+- **Instâncias reservadas:** modalidade de compromisso de uso que pode oferecer redução de custo em cenários compatíveis com o período contratado.
+- **Spot:** capacidade com desconto, sujeita a interrupções; deve ser considerada apenas para cargas que tolerem esse comportamento.
 
-A escolha do modelo de compra e da estratégia de escala dependeria de métricas reais de utilização, previsibilidade da demanda, criticidade e orçamento. Nenhuma modalidade foi contratada ou simulada neste projeto.
+A escolha de modalidade de compra e estratégia de escala dependeria de métricas reais de utilização, previsibilidade da demanda, criticidade e orçamento. Nenhuma modalidade foi contratada ou simulada neste projeto.
 
 ## Snapshots e continuidade dos dados
 
-Snapshots de volumes EBS são considerados no desenho como parte de uma estratégia conceitual de cópia e recuperação.
+Snapshots de volumes EBS são considerados como conceito relacionado à proteção e recuperação de dados.
 
-A representação de uma rotina noturna não significa que o snapshot seja simplesmente um arquivo copiado manualmente para o S3. Snapshots EBS são recursos gerenciados pela AWS. Uma automação poderia apoiar o agendamento ou a coordenação de tarefas, mas a política de criação, retenção, recuperação e permissões precisaria ser definida separadamente.
+A rotina noturna indicada no diagrama é uma representação conceitual. Uma implementação real precisaria definir frequência de criação, retenção, permissões, recuperação e responsabilidades operacionais. A automação poderia apoiar o agendamento ou a coordenação dessas tarefas, mas o snapshot continua sendo um recurso gerenciado pela AWS.
 
-Também é importante distinguir os ciclos de vida dos recursos: interromper uma instância EC2 não equivale a excluir seus volumes EBS. Volumes que permanecem provisionados podem continuar gerando custos, mesmo quando a instância está parada.
+O material de estudo também destaca a diferença entre interromper e encerrar uma instância. Dados armazenados em volumes EBS podem permanecer após a interrupção da instância; já dados em armazenamento temporário da instância podem ter outro comportamento. Volumes EBS mantidos provisionados podem continuar gerando custos.
 
 ## Segurança — premissas iniciais
 
-O diagrama inclui uma representação introdutória de VPC, sub-rede e Security Group para contextualizar o ambiente de rede das instâncias.
+O diagrama inclui uma representação introdutória de **Região AWS, VPC, sub-rede e Security Group**, para contextualizar a organização do ambiente de rede das instâncias.
 
 As premissas registradas são:
 
 - O Security Group deve liberar somente o tráfego necessário às aplicações.
-- O acesso administrativo deve ser restrito e não exposto indiscriminadamente.
-- A instância deve utilizar uma função IAM (por meio de um instance profile) para acessar recursos AWS autorizados, evitando armazenar credenciais diretamente no servidor.
+- O acesso administrativo deve ser restrito à origem autorizada, evitando exposição indiscriminada.
+- A instância deve utilizar uma função IAM associada por um perfil de instância para acessar recursos AWS autorizados, evitando armazenar credenciais diretamente no servidor.
 - O acesso ao S3 deve seguir o princípio do menor privilégio.
 
 Esses pontos são diretrizes conceituais. A configuração efetiva de rede, identidade, criptografia, auditoria e proteção de dados não foi realizada.
 
-## Replicação para múltiplas unidades
+## Expansão para múltiplas unidades
 
 O desenho ilustra a possibilidade de expansão para outros postos, identificados como **Posto 02 ... N**.
 
-A proposta inicial representa cada unidade com recursos de computação e armazenamento próprios e separação lógica dos arquivos no S3. A intenção é demonstrar que o cenário pode ser repetido em outras unidades da rede.
+A representação inicial sugere a repetição de recursos de computação e armazenamento por unidade e a organização dos arquivos no S3. A intenção é demonstrar como o cenário poderia ser replicado em outras unidades da rede.
 
-Essa representação não constitui um projeto validado de multiunidade. Em uma arquitetura real, seria necessário estudar isolamento entre unidades, governança central, conectividade, administração, custos e requisitos de disponibilidade antes de escolher entre ambientes separados ou compartilhados.
+Essa representação não constitui um projeto validado de arquitetura multiunidade. Em uma solução real, seria necessário estudar isolamento entre unidades, governança central, conectividade, administração, custos e disponibilidade antes de decidir entre ambientes separados ou compartilhados.
 
-## Limites e decisões em aberto
+## Melhorias realizadas no projeto
 
-Para manter o trabalho coerente com o estágio da formação, alguns temas foram deliberadamente mantidos fora do escopo:
+Durante a elaboração do exercício, foram realizadas melhorias para tornar a proposta mais clara e coerente com os conceitos estudados:
+
+- Escolha de um cenário de negócio com diferentes jornadas operacionais, em vez de um exemplo genérico.
+- Separação visual entre a operação física do posto e os recursos de infraestrutura em nuvem.
+- Organização das responsabilidades atribuídas a EC2, EBS, S3 e Lambda.
+- Diferenciação entre armazenamento em blocos (EBS) e armazenamento de objetos (S3).
+- Inclusão de conceitos de AMI, Security Group, VPC, sub-rede e perfil IAM no contexto da arquitetura.
+- Relacionamento dos conceitos de otimização, escalabilidade, interrupção de instâncias e snapshots ao cenário proposto.
+- Registro explícito das premissas, limitações e integrações que ainda não foram implementadas.
+
+## O que aprendi
+
+Este exercício ajudou a consolidar e relacionar os seguintes conceitos:
+
+- O papel do Amazon EC2 como serviço de computação e execução de instâncias.
+- A importância de considerar CPU, memória, armazenamento, rede e sistema operacional ao escolher uma instância.
+- O uso de AMIs como imagens de referência para iniciar instâncias.
+- A função dos Security Groups no controle do tráfego de rede.
+- A relação entre instâncias EC2 e volumes EBS.
+- A diferença entre armazenamento em blocos (EBS) e armazenamento de objetos (S3).
+- O uso de classes de armazenamento e regras de ciclo de vida no S3.
+- O conceito introdutório de automação orientada a eventos com Lambda.
+- Noções de snapshots, persistência de dados e otimização de recursos.
+- A importância de documentar decisões, premissas e limitações em um diagrama de arquitetura.
+
+## Limites do projeto e oportunidades de evolução
+
+Para manter o trabalho coerente com o estágio atual da formação, alguns temas foram deliberadamente mantidos fora do escopo:
 
 - Implantação de recursos em uma conta AWS.
 - Dimensionamento de tipos e quantidades de instâncias.
@@ -171,46 +211,32 @@ Para manter o trabalho coerente com o estágio da formação, alguns temas foram
 - Implementação das funções Lambda e configuração de seus gatilhos.
 - Integração real com bombas, sensores de tanques, PDV, adquirentes ou sistemas fiscais.
 - Definição de banco de dados transacional.
-- Alta disponibilidade, recuperação de desastres e conectividade entre unidades em nível de produção.
+- Projeto detalhado de alta disponibilidade, recuperação de desastres e conectividade entre unidades.
 - Execução de testes na AWS.
 
-Esses pontos são oportunidades de evolução conforme novos conteúdos forem estudados na formação.
-
-## Aprendizados trabalhados
-
-Este exercício permite organizar e relacionar os seguintes conceitos:
-
-- Papel do Amazon EC2 como serviço de computação e execução de instâncias.
-- Noções de AMI, tipo de instância e configuração de acesso.
-- Responsabilidade do Security Group no controle do tráfego de rede.
-- Relação entre EC2 e volumes EBS.
-- Diferença entre armazenamento em blocos (EBS) e armazenamento de objetos (S3).
-- Uso de classes de armazenamento e regras de ciclo de vida no S3.
-- Conceito introdutório de automação orientada a eventos com Lambda.
-- Noções de snapshots, persistência de dados e otimização de recursos.
-- Comunicação de decisões técnicas por meio de um diagrama de arquitetura e documentação.
+Esses pontos representam oportunidades de evolução conforme novos conteúdos forem estudados na formação.
 
 ## Estrutura do repositório
-
-Estrutura planejada para os materiais do projeto:
 
 ```text
 roudcloud-arquitetura/
 ├── README.md
-├── arquitetura/
-│   └── rotacloud-arquitetura.drawio
+├── diagrams/
+│   └── rotacloud-arquitetura-detalhada.drawio
 └── images/
     └── rotacloud-arquitetura.png
 ```
 
-O README descreve a proposta. O arquivo Draw.io deve permitir consultar e editar o diagrama, enquanto a imagem exportada facilita sua visualização diretamente no GitHub.
+- **README.md:** documentação do cenário, dos conceitos e das decisões da proposta.
+- **diagrams/:** arquivo-fonte editável do diagrama.
+- **images/:** imagem exportada para visualização direta no GitHub.
 
 ## Referências de estudo
 
 Materiais utilizados como base para este exercício:
 
-- Formação AWS Cloud Foundations — DIO, módulo de computação em nuvem com EC2.
-- Slides do curso sobre Amazon EC2, Amazon EBS, Amazon S3 e otimização de recursos.
+- Formação **AWS Cloud Foundations — DIO**, módulo de computação em nuvem com EC2.
+- Slides da formação sobre Amazon EC2, Amazon EBS, Amazon S3 e otimização de recursos.
 - Material de apoio do desafio: **Gerenciar instâncias do Amazon EC2**.
 - [Documentação AWS — Gerenciar instâncias do Amazon EC2 (AWS Toolkit for Visual Studio)](https://docs.aws.amazon.com/pt_br/toolkit-for-visual-studio/latest/user-guide/tkv-ec2-ami.html)
 - [Amazon EC2 — página oficial](https://aws.amazon.com/pt/ec2/)
@@ -220,7 +246,7 @@ Materiais utilizados como base para este exercício:
 
 > A documentação do AWS Toolkit for Visual Studio é uma referência específica para o fluxo de gerenciamento pelo Visual Studio. Os nomes de telas e procedimentos desse material não devem ser interpretados como um tutorial universal da interface atual do Console AWS.
 
-## Sobre este projeto
+## Sobre o projeto
 
 Projeto educacional desenvolvido para consolidar os primeiros conceitos de arquitetura e gerenciamento de recursos AWS durante a formação AWS Cloud Foundations.
 
