@@ -3,7 +3,9 @@
 # RotaCloud
 ### Arquitetura conceitual de uma rede de postos de combustíveis na AWS
 
-**Da chegada do cliente ao fechamento do turno: uma visão integrada da operação física e dos recursos em nuvem.**
+**Como manter uma operação rodoviária 24 horas organizada, com atendimento, abastecimento, restaurante, conveniência e equipes em turnos — usando uma arquitetura de referência baseada em serviços AWS?**
+
+O RotaCloud parte desse desafio de negócio e propõe uma visão integrada: aplicações distribuídas em instâncias EC2, armazenamento em blocos com EBS, documentos e relatórios no S3 e rotinas de automação propostas com Lambda.
 
 ![Status](https://img.shields.io/badge/status-estudo%20conceitual-blue)
 ![Formação](https://img.shields.io/badge/DIO-AWS%20Cloud%20Foundations-orange)
@@ -15,13 +17,25 @@
 
 ## Visão geral
 
-O **RotaCloud** é um exercício de arquitetura conceitual desenvolvido durante a formação **AWS Cloud Foundations**, com foco nos fundamentos do Amazon EC2, armazenamento em nuvem e gerenciamento de recursos.
+O **RotaCloud** é um exercício de arquitetura conceitual desenvolvido durante a formação **AWS Cloud Foundations**, com foco nos fundamentos de computação, armazenamento, rede e automação estudados no desafio.
 
-O cenário escolhido é uma rede de postos de combustíveis com operação 24 horas, atendimento a veículos leves e pesados, restaurante, conveniência e equipes organizadas em três turnos.
+O cenário escolhido é uma rede de postos de combustíveis com operação 24 horas, atendimento a veículos leves e pesados, restaurante, conveniência e equipes organizadas em três turnos. Em vez de representar apenas uma aplicação genérica, o projeto relaciona as etapas reais da operação a responsabilidades propostas para os serviços AWS.
 
-A proposta é relacionar esse contexto de negócio aos serviços estudados, representando como instâncias EC2 podem executar aplicações, como volumes EBS podem fornecer armazenamento em blocos, como o S3 pode armazenar documentos e relatórios e como o Lambda pode apoiar rotinas automatizadas.
+A arquitetura organiza duas frentes complementares: a operação física do posto e os recursos em nuvem que poderiam apoiar seus sistemas. O objetivo é demonstrar a compreensão dos serviços e das relações entre eles, não apresentar uma solução pronta para produção.
 
 > **Natureza do projeto:** estudo educacional e arquitetura conceitual. Nenhum recurso foi implantado em uma conta AWS. As integrações com bombas, sensores, sistemas de pagamento e aplicações do posto são ilustrativas; não foram desenvolvidas nem testadas.
+
+## Legenda visual do diagrama
+
+| Identificação visual | Representa |
+|---|---|
+| <span style="color:#6C8EBF">■ Azul</span> | Áreas, etapas e componentes da operação física do posto |
+| <span style="color:#82B366">■ Verde</span> | Recursos AWS de armazenamento, como volumes EBS e buckets S3 |
+| <span style="color:#F0A000">■ Laranja</span> | Automações propostas com AWS Lambda |
+| <span style="color:#9673A6">■ Roxo</span> | Agrupamentos de contexto, como equipes, rede ou expansão |
+| Contornos e rótulos de rede | Região, VPC, sub-rede e Security Group representados conceitualmente |
+
+As cores funcionam como apoio visual. A identificação técnica dos recursos é feita também pelos nomes e rótulos presentes no diagrama.
 
 ## O cenário de negócio
 
@@ -54,6 +68,18 @@ O diagrama reúne duas perspectivas complementares:
 </div>
 
 **Arquivo-fonte editável:** [Abrir o diagrama no Draw.io](diagrams/rotacloud-arquitetura-detalhada.drawio).
+
+## Decisões de arquitetura
+
+| Serviço ou recurso | Por que foi escolhido no RotaCloud |
+|---|---|
+| **Amazon EC2** | Representa a capacidade computacional para executar as aplicações que apoiariam a operação do posto e a gestão de equipes. Duas instâncias foram separadas no desenho para distinguir responsabilidades. |
+| **Amazon EBS** | Representa o armazenamento em blocos associado às instâncias EC2, como os discos utilizados pelos sistemas e aplicações. |
+| **Amazon S3** | Foi escolhido para armazenar objetos, como documentos fiscais, relatórios de turno e cópias de arquivos. Os buckets foram separados visualmente por finalidade. |
+| **AWS Lambda** | Representa possibilidades de automação orientada a eventos ou invocações, como organizar documentos, apoiar o fechamento de turno, gerar alertas e coordenar rotinas relacionadas a snapshots. |
+| **VPC, sub-rede e Security Group** | Contextualizam a organização lógica da rede e o controle do tráfego de entrada e saída das instâncias. |
+
+As escolhas refletem o escopo introdutório do exercício. Não representam uma comparação exaustiva entre serviços nem uma arquitetura dimensionada para uma carga de produção.
 
 ## Arquitetura proposta
 
@@ -108,10 +134,11 @@ No diagrama, o Lambda aparece associado a possibilidades de automação:
 - Apoio ao fechamento de turno.
 - Geração de alerta de estoque baixo.
 - Coordenação de uma rotina relacionada a snapshots.
+- Cópia proposta de arquivos e relatórios para o bucket de backups.
 
 Esses itens são **casos de uso propostos**, não funções implementadas ou testadas. Para cada automação, ainda seria necessário definir a origem dos dados, o evento de acionamento, as permissões e a integração com os demais recursos.
 
-**Sobre snapshots:** a representação da rotina noturna deve ser entendida como uma ideia de automação ou coordenação do processo. Snapshots de volumes EBS são recursos gerenciados pela AWS; não devem ser interpretados como arquivos que uma função Lambda simplesmente copia para um bucket S3 comum.
+**Sobre snapshots:** a rotina noturna deve ser entendida como uma ideia de automação ou coordenação do processo. Snapshots de volumes EBS são recursos gerenciados pela AWS; não devem ser interpretados como arquivos que uma função Lambda simplesmente copia para um bucket S3 comum.
 
 O detalhamento de gatilhos, código e mecanismos de integração fica fora do escopo introdutório deste projeto.
 
@@ -130,6 +157,20 @@ O fluxo abaixo conecta a jornada do negócio às responsabilidades atribuídas a
 9. As rotinas atribuídas ao Lambda representam possibilidades de automação e geração de alertas.
 
 Esse fluxo descreve o funcionamento pretendido do cenário. Não especifica protocolos nem comprova integração com bombas, terminais de pagamento ou equipamentos físicos.
+
+## Premissas técnicas
+
+Para interpretar corretamente o diagrama, foram adotadas as seguintes premissas:
+
+- As duas instâncias EC2 representam uma separação conceitual entre aplicações operacionais e aplicações de equipe; tipos, tamanhos e capacidade não foram dimensionados.
+- Os volumes EBS estão associados às instâncias como armazenamento em blocos. O desenho não especifica sistema de arquivos, desempenho, tamanho ou política de anexação.
+- Os buckets S3 representam finalidades distintas: notas fiscais, relatórios e cópias de arquivos. A política de acesso, retenção, criptografia e versionamento ainda precisaria ser definida.
+- O bucket de backups destina-se a cópias de objetos e relatórios. Ele não recebe snapshots EBS como arquivos copiados por Lambda.
+- A função Lambda relacionada a snapshots representa coordenação de uma rotina; a criação, retenção e recuperação dos snapshots precisariam ser detalhadas.
+- As automações desenhadas são propostas. Gatilhos, permissões IAM, código, monitoramento e tratamento de falhas não foram implementados.
+- Região, VPC, sub-rede e Security Group são representações conceituais. Endereçamento, rotas, conectividade, exposição pública e regras efetivas de tráfego ainda precisariam ser validados.
+- A expansão para outras unidades é uma ideia de reutilização da arquitetura de referência. Isolamento, conectividade, endereçamento e gestão centralizada ainda exigiriam projeto específico.
+- Não foram realizados implantação, testes, validação de desempenho, análise de disponibilidade ou estimativa de custos em uma conta AWS.
 
 ## Gerenciamento e otimização de recursos
 
